@@ -41,10 +41,14 @@ app.get("/cars", (req, res) => {
 // 2. SEARCH (HARUS DI ATAS GET BY ID!)
 app.get("/cars/search/:query", (req, res) => {
   const { query } = req.params;
-  db.all("SELECT * FROM tbcarsweb WHERE carname LIKE ?", [`%${query}%`], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
+  db.all(
+    "SELECT * FROM tbcarsweb WHERE carname LIKE ?",
+    [`%${query}%`],
+    (err, rows) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(rows);
+    },
+  );
 });
 
 // 3. GET SINGLE (By ID)
@@ -63,18 +67,22 @@ app.post("/cars", (req, res) => {
   const query = `INSERT INTO tbcarsweb (carname, carbrand, carmodel, carprice, description) 
                  VALUES (?, ?, ?, ?, ?)`;
 
-  db.run(query, [carname, carbrand, carmodel, carprice, description], function (err) {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({
-      message: "Data Saved",
-      id: this.lastID,
-      carname,
-      carbrand,
-      carmodel,
-      carprice,
-      description,
-    });
-  });
+  db.run(
+    query,
+    [carname, carbrand, carmodel, carprice, description],
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({
+        message: "Data Saved",
+        id: this.lastID,
+        carname,
+        carbrand,
+        carmodel,
+        carprice,
+        description,
+      });
+    },
+  );
 });
 
 // 5. UPDATE (Put)

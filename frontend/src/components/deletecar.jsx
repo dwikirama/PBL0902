@@ -30,19 +30,34 @@ const DeleteCar = () => {
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <div className="card-custom border-danger" style={{borderTop: '5px solid #e74c3c'}}>
+          <div
+            className="card-custom border-danger"
+            style={{ borderTop: "5px solid #e74c3c" }}
+          >
             <h3 className="page-title text-center text-danger">Delete Car</h3>
             <p className="text-center text-muted">Server: {msId}</p>
-            
+
             <form onSubmit={handleDelete}>
               <div className="form-group">
                 <label>Enter Car ID to Delete</label>
-                <input type="number" className="form-control form-control-lg" name="id" value={id} onChange={(e) => setId(e.target.value)} required placeholder="ID..." />
+                <input
+                  type="number"
+                  className="form-control form-control-lg"
+                  name="id"
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                  required
+                  placeholder="ID..."
+                />
               </div>
 
               <div className="d-flex justify-content-between mt-4">
-                <Link to={`/pbl0902/ms/${msId}`} className="btn btn-secondary">Cancel</Link>
-                <button type="submit" className="btn btn-danger px-4">Delete Permanently</button>
+                <Link to={`/pbl0902/ms/${msId}`} className="btn btn-secondary">
+                  Cancel
+                </Link>
+                <button type="submit" className="btn btn-danger px-4">
+                  Delete Permanently
+                </button>
               </div>
             </form>
           </div>

@@ -18,7 +18,11 @@ const SearchCar = () => {
       let data = res.data;
       // Filter manual di frontend jika backend return semua (khusus MS2/MS3 jika endpoint search beda)
       if (msId !== "MS1" && Array.isArray(data)) {
-        data = data.filter((item) => item.carname && item.carname.toLowerCase().includes(keyword.toLowerCase()));
+        data = data.filter(
+          (item) =>
+            item.carname &&
+            item.carname.toLowerCase().includes(keyword.toLowerCase()),
+        );
       }
       setResults(Array.isArray(data) ? data : []);
     } catch (error) {
@@ -31,20 +35,24 @@ const SearchCar = () => {
       <div className="card-custom">
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h2 className="page-title">Search Car ({msId})</h2>
-          <Link to={`/pbl0902/ms/${msId}`} className="btn btn-secondary btn-sm">Back to Dashboard</Link>
+          <Link to={`/pbl0902/ms/${msId}`} className="btn btn-secondary btn-sm">
+            Back to Dashboard
+          </Link>
         </div>
 
         <form onSubmit={handleSearch} className="mb-4">
           <div className="input-group">
-            <input 
-              type="text" 
-              className="form-control" 
-              onChange={(e) => setKeyword(e.target.value)} 
-              placeholder="Enter car name (e.g. Honda)..." 
-              required 
+            <input
+              type="text"
+              className="form-control"
+              onChange={(e) => setKeyword(e.target.value)}
+              placeholder="Enter car name (e.g. Honda)..."
+              required
             />
             <div className="input-group-append">
-              <button className="btn btn-info" type="submit">Search</button>
+              <button className="btn btn-info" type="submit">
+                Search
+              </button>
             </div>
           </div>
         </form>
